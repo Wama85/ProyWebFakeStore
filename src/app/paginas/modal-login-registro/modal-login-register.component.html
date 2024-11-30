@@ -1,0 +1,58 @@
+<p-dialog header="REGISTRO" [(visible)]="visible" [modal]="true" [closable]="false" [style]="{ width: '25rem' }">
+  <form [formGroup]="userForm" (ngSubmit)="saveUser()">
+    <span class="p-text-secondary block mb-5">Formulario de Registro.</span>
+
+    <!-- Campo Nombre -->
+    <div class="flex flex-column gap-3 mb-3">
+      <label for="name" class="font-semibold">Nombre</label>
+      <input pInputText id="name" class="w-full" autocomplete="off" formControlName="nombre" />
+      <div *ngIf="userForm.controls['nombre'].invalid && userForm.controls['nombre'].touched" class="error">
+        Nombre es obligatorio
+      </div>
+    </div>
+
+     <!-- Campo Apellido -->
+     <div class="flex flex-column gap-3 mb-3">
+      <label for="lastname" class="font-semibold">Apellido</label>
+      <input pInputText id="lastname" class="w-full" autocomplete="off" formControlName="apellido" />
+      <div *ngIf="userForm.controls['apellido'].invalid && userForm.controls['apellido'].touched" class="error">
+        Nombre es obligatorio
+      </div>
+    </div>
+
+    <!-- Campo Usuario -->
+    <div class="flex flex-column gap-3 mb-3">
+      <label for="username" class="font-semibold">Usuario</label>
+      <input pInputText id="username" class="w-full" autocomplete="off" formControlName="username" />
+      <div *ngIf="userForm.controls['username'].invalid && userForm.controls['username'].touched" class="error">
+        Usuario es obligatorio
+      </div>
+    </div>
+
+
+
+    <!-- Campo Clave -->
+    <div class="flex flex-column gap-3 mb-3">
+      <label for="password" class="font-semibold">Clave</label>
+      <input type="password" pInputText id="password" class="w-full" autocomplete="off" formControlName="clave" />
+      <div *ngIf="userForm.controls['clave'].invalid && userForm.controls['clave'].touched" class="error">
+        La contraseña es obligatoria
+      </div>
+    </div>
+
+  <!-- Campo Dirección -->
+  <div class="flex flex-column gap-3 mb-3">
+    <label for="direccion" class="font-semibold">Direccion</label>
+    <input pInputText id="direccion" class="w-full" autocomplete="off" formControlName="direccion" />
+    <div *ngIf="userForm.controls['direccion'].invalid && userForm.controls['direccion'].touched" class="error">
+      Correo es obligatorio
+    </div>
+  </div>
+
+    <!-- Botones de Acción -->
+    <div class="flex justify-content-end gap-2">
+      <p-button label="CANCELAR" severity="secondary" (click)="closeModal()"></p-button>
+      <p-button label="GUARDAR" type="submit"></p-button>
+    </div>
+  </form>
+</p-dialog>

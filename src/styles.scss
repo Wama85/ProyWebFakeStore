@@ -1,0 +1,18 @@
+:root {
+ // --color-primario: #883cae;
+ --color-primario: #084657;
+ --color-fondo:rgb(255, 253, 253);
+}
+::selection{
+  background-color: var(--color-primario);
+  color: white;
+}
+
+@import "primeicons/primeicons.css";
+@import "primeflex/primeflex.css";
+
+
+//font header titulo
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Text:ital@0;1&family=Poetsen+One&family=Protest+Guerrilla&display=swap');
+
+

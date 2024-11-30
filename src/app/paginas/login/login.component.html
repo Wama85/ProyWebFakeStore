@@ -1,0 +1,50 @@
+<div class="flex justify-content-center align-items-center min-h-screen">
+  <div class="card container">
+    <div class="flex flex-column justify-content-center align-items-center">
+      <div class="w-full md:w-5 flex flex-column align-items-center justify-content-center gap-3 py-5">
+        <a href="/home"><div>
+          <i class="pi pi-shopping-cart p-2 i-color">
+          <span class="bebas-neue-regular ml">Fake Store Api</span></i>
+        </div>
+      </a>
+
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+
+          <div class="flex flex-wrap justify-content-center align-items-center gap-2 w-full">
+            <label class="w-6rem text-right">usuario</label>
+            <input type="text" formControlName="username" pInputText id="username" class="w-12rem">
+          </div>
+          <div class="flex justify-content-center align-items-center w-full mt-1">
+            <div *ngIf="loginForm.controls['username'].invalid && loginForm.controls['username'].touched" class="error">
+              Usuario es obligatorio
+            </div>
+          </div>
+          <p-toast></p-toast>
+
+          <div class="flex flex-wrap justify-content-center align-items-center gap-2 w-full">
+            <label class="w-6rem text-right">Clave</label>
+            <input type="password" formControlName="clave" pInputText id="clave" class="w-12rem">
+          </div>
+          <div class="flex justify-content-center align-items-center w-full mt-1">
+            <div *ngIf="loginForm.controls['clave'].invalid && loginForm.controls['clave'].touched" class="error">
+              La contraseña es obligatorio
+            </div>
+          </div>
+          <p-toast></p-toast>
+
+          <div class="flex justify-content-center align-items-center w-full ml-10 mt-3">
+            <p-button label="INICIAR" icon="pi pi-user" styleClass="w-12rem mx-auto" type="submit" severity="success"></p-button>
+          </div>
+        </form>
+
+        <div class="flex justify-content-center align-items-center w-full ml-10 mt-3">
+          <a class="ml-10" href="#" (click)="openSignUpModal($event)">Registrate</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-toast></p-toast>
+<app-modal-login-register *ngIf="visible"></app-modal-login-register>
+

@@ -1,0 +1,21 @@
+.formulario-container {
+  width: 50%;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .formulario-container {
+    width: 100%;
+  }
+}
+input{
+  width: 100%;
+}
+tr th{
+  border: solid 1px #e0e0e0;
+  background-color:var(--color-primario);
+  color: white;
+}
+tr td{
+  border: solid 1px #e0e0e0;
+}

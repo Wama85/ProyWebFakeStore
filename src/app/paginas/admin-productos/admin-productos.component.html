@@ -1,0 +1,138 @@
+<app-header></app-header>
+
+<button pButton type="button" label="AGREGAR PRODUCTO" icon="pi pi-plus"
+          class="p-button-raised p-button-rounded p-button-success"
+          (click)="mostrarModalAgregar()"></button>
+
+<div class="card">
+  <h2 class="titulo-tabla">Administrar Productos</h2>
+ <!-- Formulario para crear/editar productos -->
+ <div class="messages">
+  <p-messages></p-messages>
+</div>
+  <p-confirmDialog></p-confirmDialog>
+  <!-- Lista de productos en forma de tabla -->
+  <p-table [value]="productos" class="p-datatable tabla-productos" [rows]="10" [paginator]="true" [responsive]="true">
+    <ng-template pTemplate="header">
+      <tr>
+        <th class="header">Nombre</th>
+        <th class="header">Precio</th>
+        <th class="header">Stock</th>
+        <th class="header">Categoría</th>
+        <th class="header">Acciones</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-producto>
+      <tr class="fila-producto">
+        <td>{{ producto.nombre }}</td>
+        <td>{{ producto.costo | currency }}</td>
+        <td>{{ producto.stock }}</td>
+        <td>{{ producto.categoria }}</td>
+        <td>
+          <button pButton type="button" label="Editar" icon="pi pi-pencil" class="p-button-raised p-button-rounded p-button-success" (click)="editarProducto(producto)"></button>
+          <button pButton type="button" label="Eliminar" icon="pi pi-trash" class="p-button-raised p-button-rounded p-button-danger" (click)="eliminarProducto(producto)"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+
+
+
+
+</div>
+
+<!-- Modal para crear/editar productos -->
+<p-dialog header="{{titulo}}" [(visible)]="displayModal" [responsive]="true" [modal]="true" [closable]="true" [style]="{width: '50vw'}">
+  <form [formGroup]="productoForm" (ngSubmit)="guardarProducto()" class="formulario">
+    <div class="p-grid p-fluid">
+      <!-- Campos del formulario de edición -->
+      <div class="formulario-container">
+        <form [formGroup]="productoForm" (ngSubmit)="guardarProducto()" class="formulario">
+          <div class="p-grid p-fluid">
+            <div class="p-col-12 p-md-6 p-col-align-center">
+              <div class="p-field">
+                <label for="nombre" class="label">Título:</label>
+                <input id="nombre" type="text" formControlName="nombre" class="p-inputtext" [ngClass]="{'p-invalid': productoForm.get('nombre')?.invalid && productoForm.get('nombre')?.touched}">
+                <div *ngIf="productoForm.get('nombre')?.invalid && productoForm.get('nombre')?.touched" class="p-error">
+                  Título es requerido
+                </div>
+              </div>
+            </div>
+
+            <div class="p-col-12 p-md-6 p-col-align-center">
+              <div class="p-field">
+                <label for="detalle" class="label">Detalle:</label>
+                <textarea id="detalle" formControlName="detalle" class="p-inputtextarea" [ngClass]="{'p-invalid': productoForm.get('detalle')?.invalid && productoForm.get('detalle')?.touched}"></textarea>
+                <div *ngIf="productoForm.get('detalle')?.invalid && productoForm.get('detalle')?.touched" class="p-error">
+                  Detalle es requerido
+                </div>
+              </div>
+            </div>
+
+            <div class="p-col-12 p-md-6 p-col-align-center">
+              <div class="p-field">
+                <label for="costo" class="label">Costo:</label>
+                <input id="costo" type="number" formControlName="costo" class="p-inputnumber" [ngClass]="{'p-invalid': productoForm.get('costo')?.invalid && productoForm.get('costo')?.touched}">
+                <div *ngIf="productoForm.get('costo')?.invalid && productoForm.get('costo')?.touched" class="p-error">
+                  Costo es requerido
+                </div>
+              </div>
+            </div>
+
+            <div class="p-col-12 p-md-6 p-col-align-center">
+              <div class="p-field">
+                <label for="imagen" class="label">Imagen URL:</label>
+                <input id="imagen" type="text" formControlName="imagen" class="p-inputtext" [ngClass]="{'p-invalid': productoForm.get('imagen')?.invalid && productoForm.get('imagen')?.touched}">
+                <div *ngIf="productoForm.get('imagen')?.invalid && productoForm.get('imagen')?.touched" class="p-error">
+                  URL de imagen es requerida
+                </div>
+              </div>
+            </div>
+
+            <div class="p-col-12 p-md-6 p-col-align-center">
+              <div class="p-field">
+                <label for="estado" class="label">Estado:</label>
+                <p-dropdown id="estado" formControlName="estado" [options]="estadoOptions" placeholder="Seleccionar" class="p-dropdown"></p-dropdown>
+                <div *ngIf="productoForm.get('estado')?.invalid && productoForm.get('estado')?.touched" class="p-error">
+                  Estado es requerido
+                </div>
+              </div>
+            </div>
+
+            <div class="p-col-12 p-md-6 p-col-align-center">
+              <div class="p-field">
+                <label for="stock" class="label">Stock:</label>
+                <input id="stock" type="number" formControlName="stock" class="p-inputnumber" [ngClass]="{'p-invalid': productoForm.get('stock')?.invalid && productoForm.get('stock')?.touched}">
+                <div *ngIf="productoForm.get('stock')?.invalid && productoForm.get('stock')?.touched" class="p-error">
+                  Stock es requerido
+                </div>
+              </div>
+            </div>
+
+            <div class="p-col-12 p-md-6 p-col-align-center">
+              <div class="p-field">
+                <label for="categoria" class="label">Categoría:</label>
+                <p-dropdown id="categoria" formControlName="categoria" [options]="categorias" placeholder="Seleccionar" class="p-dropdown"></p-dropdown>
+                <div *ngIf="productoForm.get('categoria')?.invalid && productoForm.get('categoria')?.touched" class="p-error">
+                  Categoría es requerida
+                </div>
+              </div>
+            </div>
+
+            <div class="p-col-12 p-md-6 p-col-align-center">
+              <div class="p-field">
+                <button type="submit" pButton label="Guardar" class="p-button p-button-raised p-button-rounded p-button-success" [disabled]="productoForm.invalid"></button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+
+
+  </form>
+</p-dialog>
+
+<app-footer></app-footer>

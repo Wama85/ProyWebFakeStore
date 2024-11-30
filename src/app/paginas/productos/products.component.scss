@@ -1,0 +1,69 @@
+.flex-column {
+  flex-direction: row !important;
+}
+
+.pd-icon {
+  padding-right: 5px !important;
+}
+
+
+.button-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.large-icon .pi {
+  font-size: 44px !important;
+}
+
+.heart-selected {
+  color: red;
+  background: red;
+
+}
+
+
+.card {
+  background: var(--color-fondo);
+  padding: 2rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.card-style{
+  display: flex;
+  flex-direction: row;
+  align-content: stretch;
+  justify-content: center;
+
+  align-items: center;
+  text-align: center;
+}
+
+.wh {
+  max-width: 300px;
+}
+
+.br-30 {
+  border-radius: 30px
+}
+
+.br-302 {
+  border-radius: 30px;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.04), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
+}
+
+.bt-lg {
+padding-left: 1755px !important;
+margin-bottom: 20px !important;
+}
+.cart-indicator
+{
+  display: flex;
+  justify-content:right;
+  margin-right: 20px;
+  align-items: center;
+  font-size: 12px;
+
+}
