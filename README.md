@@ -7,7 +7,7 @@ luego ejecuta estos comando
 npm install
 npm install -g @angular/cli
 
-Para iniciar el servidor ejecuta:
-ng server -o
+Para iniciar el servidor de api y el front a la misma vez ejecuta:
+npm run start
 
 
